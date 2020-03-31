@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import axios from 'axios';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
+import Login from './components/registrations/Login';
+import Signup from './components/registrations/Signup';
 
-class App extends Component() {
+class App extends Component {
   constructor(props) {
     super(props);
     this.state = {
@@ -48,8 +50,8 @@ class App extends Component() {
         <BrowserRouter>
           <Switch>
             <Route exact path= '/' component={Home} />
-            <Route exact path='/login' component={} />
-            <Route exact path='/signup' component={}/>
+            <Route exact path='/login' component={Login} />
+            <Route exact path='/signup' component={Signup}/>
           </Switch>
         </BrowserRouter>
       </div>
