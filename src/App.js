@@ -1,26 +1,60 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { Component } from 'react';
+import axios from 'axios';
+import { BrowserRouter, Switch, Route } from 'react-router-dom';
+import Home from './components/Home';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class App extends Component() {
+  constructor(props) {
+    super(props);
+    this.state = {
+      isLoggedIn: false,
+      user: {}
+    };
+  }
+
+  componentDidMount() {
+    this.loginStatus();
+  }
+  loginStatus = () => {
+    axios.get('http://localhost:3001/logged_in',
+    {withCredentials: true})
+
+    .then(response => {
+      if (response.data.logged_in) {
+        this.handleLogin(response)
+      } else {
+        this.handleLogout()
+      }
+    })
+    .catch(error => console.log('api errors:', error))
+  }
+
+  handleLogin = (data) => {
+    this.setState({
+      isLoggedIn: true,
+      user: data.user
+    })
+  }
+
+  handleLogout = () => {
+    this.setState({
+      isLoggedIn: false,
+      user: {}
+    })
+  }
+  render () {
+    return (
+      <div>
+        <BrowserRouter>
+          <Switch>
+            <Route exact path= '/' component={Home} />
+            <Route exact path='/login' component={} />
+            <Route exact path='/signup' component={}/>
+          </Switch>
+        </BrowserRouter>
+      </div>
+    );
+  }
 }
 
 export default App;
