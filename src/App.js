@@ -49,9 +49,24 @@ class App extends Component {
       <div>
         <BrowserRouter>
           <Switch>
-            <Route exact path= '/' component={Home} />
-            <Route exact path='/login' component={Login} />
-            <Route exact path='/signup' component={Signup}/>
+            <Route 
+              exact path= '/'
+              render={props => (
+                <Home {...props} loggedInStatus={this.state.isLoggedIn}/>
+              )} 
+              />
+            <Route 
+              exact path='/login' 
+              render={props => (
+                <Login {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+              )} 
+            />
+            <Route 
+              exact path='/signup' 
+              render={props => (
+                <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+              )}
+            />
           </Switch>
         </BrowserRouter>
       </div>
