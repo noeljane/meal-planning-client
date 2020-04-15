@@ -87,11 +87,12 @@ class Signup extends Component {
             value={password}
             onChange={this.handleChange}
           />
+
           <input
             placeholder="password confirmation"
             type="password"
-            name="password confirmation"
-            
+            name="password_confirmation"
+            value={password_confirmation}
             onChange={this.handleChange}
           />
           <button placeholder="submit" type="submit">
