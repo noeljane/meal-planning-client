@@ -4,6 +4,8 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/registrations/Login';
 import Signup from './components/registrations/Signup';
+import MealsIndex from './components/meals/MealsIndex';
+import MealsNew from './components/meals/MealsNew';
 
 class App extends Component {
   constructor(props) {
@@ -65,6 +67,19 @@ class App extends Component {
               exact path='/signup' 
               render={props => (
                 <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+              )}
+            />
+            <Route
+              exact path='/meals'
+              render={props => (
+                <MealsIndex {...props} loggedInStatus={this.state.isLoggedIn} />
+              )}
+            />
+            <Route
+              exact path='meals/new'
+              render={props => (
+                <MealsNew {...props} loggedInStatus={this.state.isLoggedIn}
+                />
               )}
             />
           </Switch>

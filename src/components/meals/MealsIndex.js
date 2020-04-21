@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import axios from 'axios';
 import {Link} from 'react-router-dom';
-import { BrowserRouter, Switch, Route } from 'react-router-dom';
+
 
 class MealsIndex extends Component {
   // constructor(props) {
@@ -10,10 +10,16 @@ class MealsIndex extends Component {
   //   }
   // }
 
+  //TODO: 
+    //pass through propsl 
+
   render() {
     return (
-      <h1>Meals!!</h1>
-      <a href='/meals/new'></a>
+      <div>
+        <h1>Meals!!</h1>
+        <Link  to='/meals/new'>Create a Meal</Link>
+      </div>
+      
     )
   }
 
