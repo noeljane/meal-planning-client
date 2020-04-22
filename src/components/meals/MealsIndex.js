@@ -11,7 +11,8 @@ class MealsIndex extends Component {
   // }
 
   //TODO: 
-    //pass through propsl 
+    //pass through props
+    
 
   render() {
     return (

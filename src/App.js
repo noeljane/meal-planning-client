@@ -76,7 +76,7 @@ class App extends Component {
               )}
             />
             <Route
-              exact path='meals/new'
+              exact path='/meals/new'
               render={props => (
                 <MealsNew {...props} loggedInStatus={this.state.isLoggedIn}
                 />
