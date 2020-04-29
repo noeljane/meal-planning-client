@@ -4,6 +4,7 @@ import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/registrations/Login';
 import Signup from './components/registrations/Signup';
+import LogOut from './components/registrations/Logout'
 import MealsIndex from './components/meals/MealsIndex';
 import MealsNew from './components/meals/MealsNew';
 
@@ -69,6 +70,12 @@ class App extends Component {
                 <Signup {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
               )}
             />
+             <Route 
+              exact path='/logout' 
+              render={props => (
+                <LogOut {...props} handleLogin={this.handleLogin} loggedInStatus={this.state.isLoggedIn}/>
+              )}
+            />
             <Route
               exact path='/meals'
               render={props => (
@@ -78,7 +85,7 @@ class App extends Component {
             <Route
               exact path='/meals/new'
               render={props => (
-                <MealsNew {...props} loggedInStatus={this.state.isLoggedIn}
+                <MealsNew {...props} loggedInStatus={this.state.isLoggedIn} user={this.state.user}
                 />
               )}
             />

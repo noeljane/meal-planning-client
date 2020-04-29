@@ -30,7 +30,9 @@ class MealsNew extends Component {
 
   // params.require(:meal).permit(:name, :description, :date, :link_to_recipe, :user_id)
   render() {
-    const { name, description,date } = this.state
+    const { name, description,date } = this.state;
+    console.log("Props for meal form:");
+    console.log(this.props);
     return (
       <div>
         <h1>Add a meal, fool!</h1>
