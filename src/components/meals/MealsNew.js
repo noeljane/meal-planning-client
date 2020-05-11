@@ -9,9 +9,13 @@ class MealsNew extends Component {
       name: '',
       description: '',
       date: 0,
-      linkToRecipe: '',
+      userId: ''
       //get user from props???
     }
+  }
+
+  componentDidMount() {
+
   }
   
   handleChange = (event) => {
@@ -24,7 +28,25 @@ class MealsNew extends Component {
   //TODO: Add axios for creating new meal
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('submitted!')
+    const { name,description, date  } = this.state;
+    const userId  = this.props.user.id;
+
+    let meal = {
+      name: name, 
+      description: description,
+      date: date,
+      userId: userId
+    }
+    console.log("Here's the meal")
+    console.log(meal);
+
+    axios.post('http://localhost:3001/meals', {meal})
+      .then(response => {
+        console.log("success!!");
+        console.log(response);
+      })
+      .catch(error => console.log('api errors:', error))
+  
     console.log(this.state);
   }
 
