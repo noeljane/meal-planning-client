@@ -30,7 +30,18 @@ class Login extends Component {
       password: password
     }
     
-    axios.post('http://localhost:3001/login', {user}, {withCredentials: true})
+    axios.post('http://localhost:3001/login', {
+      headers: {
+        "Content-Type": "application/json",
+        "Accept": "application/json"
+      }, 
+      body: JSON.stringify({
+        username,
+        email,
+        password, 
+      })
+    }
+    )
       .then(response => {
         if (response.data.logged_in) {
           this.props.handleLogin(response.data);
@@ -67,7 +78,6 @@ class Login extends Component {
     return (
       <div>
         <h1>Log In</h1>
-
         <form onSubmit={this.handleSubmit}>
           <input
             placeholder="username"
