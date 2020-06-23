@@ -24,35 +24,51 @@ class Login extends Component {
     event.preventDefault();
     const { username, email, password } = this.state;
 
-    let user = {
-      username: username,
-      email: email, 
-      password: password
-    }
-    
-    axios.post('http://localhost:3001/login', {
+    fetch(`http://localhost:3001/login`, {
+      method: "POST", 
       headers: {
-        "Content-Type": "application/json",
+        "Content-Type" : "application/json",
         "Accept": "application/json"
       }, 
       body: JSON.stringify({
         username,
         email,
-        password, 
+        password
       })
-    }
-    )
-      .then(response => {
-        if (response.data.logged_in) {
-          this.props.handleLogin(response.data);
-          this.redirect();
-        } else {
-          this.setState({
-            errors: response.data.errors
-          })
-        }
-      })
-      .catch(error => console.log('api errors:', error))
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      localStorage.setItem("token", data.jwt)
+      this.props.handleLogin(data.user)
+    })
+    .catch(error => {
+      console.log(error)
+    })
+
+    
+    // axios.post('http://localhost:3001/login', {
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //     "Accept": "application/json"
+    //   }, 
+    //   body: JSON.stringify({
+    //     username,
+    //     email,
+    //     password, 
+    //   })
+    // }
+    // )
+    //   .then(response => {
+    //     if (response.data.logged_in) {
+    //       this.props.handleLogin(response.data);
+    //       this.redirect();
+    //     } else {
+    //       this.setState({
+    //         errors: response.data.errors
+    //       })
+    //     }
+    //   })
+    //   .catch(error => console.log('api errors:', error))
 
       
   }

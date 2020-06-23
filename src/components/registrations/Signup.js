@@ -23,39 +23,10 @@ class Signup extends Component {
   handleSubmit = (event) => {
     event.preventDefault();
     const {username, email, password, password_confirmation} = this.state;
-    // let user = {
-    //   username: username,
-    //   email: email, 
-    //   password: password,
-    //   password_confirmation: password_confirmation
-    // }
 
-    // axios.post('http://localhost:3001/users', {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json"
-    //   }, 
-    //   body: JSON.stringify({
-    //     username, 
-    //     email, 
-    //     password
-    //   })
-    // })
-    //   .then(response => {
-    //     if (response.data.status === 'created') {
-    //       localStorage.setItem("token", response.jwt)
-    //       console.log(response);
-    //       this.props.handleLogin(response.data)
-    //       this.redirect();
-    //     } else {
-    //       this.setState({
-    //         errors: response.data.errors
-    //       })
-    //     }
-    //   })
-    //   .catch(error => console.log('api errors:', error))
+   //TODO: make this an axios request???? 
 
-      fetch(`http://localhost:3001/users`, {
+    fetch(`http://localhost:3001/users`, {
       method:"POST", 
       headers: {
         "Content-Type": "application/json",
