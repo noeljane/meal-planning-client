@@ -18,7 +18,7 @@ class LogOut extends Component {
 
   render () {
     console.log(this.props);
-    const { user}  = this.props;
+    const { user }  = this.props;
     return(
       <div> 
         <h1>You want to log out?</h1>

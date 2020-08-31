@@ -43,34 +43,7 @@ class Login extends Component {
     })
     .catch(error => {
       console.log(error)
-    })
-
-    
-    // axios.post('http://localhost:3001/login', {
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //     "Accept": "application/json"
-    //   }, 
-    //   body: JSON.stringify({
-    //     username,
-    //     email,
-    //     password, 
-    //   })
-    // }
-    // )
-    //   .then(response => {
-    //     if (response.data.logged_in) {
-    //       this.props.handleLogin(response.data);
-    //       this.redirect();
-    //     } else {
-    //       this.setState({
-    //         errors: response.data.errors
-    //       })
-    //     }
-    //   })
-    //   .catch(error => console.log('api errors:', error))
-
-      
+    }) 
   }
 
   redirect = () => {

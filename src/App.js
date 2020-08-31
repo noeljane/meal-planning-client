@@ -20,39 +20,23 @@ class App extends Component {
   componentDidMount() {
     const token = localStorage.getItem("token")
     if(token) {
-      axios.get(`http://localhost:3000/auto_login`, {
+      fetch(`http://localhost:3001/auto_login`, {
         headers: {
           Authorization: `Bearer ${token}`
         }
       })
-      .then(response => {
+      .then(resp => resp.json())
+      .then(data => {
         this.setState({
-          user: response
+          user: data
         })
       })
       
     }
-    // this.loginStatus();
   }
-
-  // loginStatus = () => {
-    
-  //   axios.get('http://localhost:3001/user_is_authed',
-  //   {withCredentials: true})
-
-  //   .then(response => {
-  //     if (response.data.user) {
-  //       this.handleLogin(response)
-  //     } else {
-  //       this.handleLogout()
-  //     }
-  //   })
-  //   .catch(error => console.log('api errors:', error))
-  // }
 
   handleLogin = (data) => {
     this.setState({
-      // isLoggedIn: true,
       user: data.user
     })
   }
@@ -63,10 +47,11 @@ class App extends Component {
     })
   }
 
+  //not sure we need this
   handleAuthClick = () => {
     const token = localStorage.getItem("token")
 
-    axios.get(`http://localhost:3000/user_is_authed`, {
+    axios.get(`http://localhost:3001/user_is_authed`, {
       headers: {
         "Authorization": `Bearer ${token}`
       }
@@ -76,12 +61,12 @@ class App extends Component {
     })
   }
 
-  // handleLogout = () => {
-  //   this.setState({
-  //     isLoggedIn: false,
-  //     user: {}
-  //   })
-  // }
+  handleLogout = () => {
+    this.setState({
+      user: {}
+    })
+    localStorage.setItem("token", '')
+  }
   render () {
     return (
       <div>
