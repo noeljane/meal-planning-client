@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/registrations/Login';
@@ -44,20 +43,6 @@ class App extends Component {
   handleFormSwitch = (input) => {
     this.setState({
       form: input
-    })
-  }
-
-  //not sure we need this
-  handleAuthClick = () => {
-    const token = localStorage.getItem("token")
-
-    axios.get(`http://localhost:3001/user_is_authed`, {
-      headers: {
-        "Authorization": `Bearer ${token}`
-      }
-    })
-    .then(data => {
-      console.log(data);
     })
   }
 
