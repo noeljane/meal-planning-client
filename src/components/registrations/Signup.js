@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 
 class Signup extends Component {
   constructor(props) {
@@ -20,30 +19,31 @@ class Signup extends Component {
     })
   }
 
-  handleSubmit = (event) => {
-    event.preventDefault();
-    const {username, email, password, password_confirmation} = this.state;
 
-   //TODO: make this an axios request???? 
-
-    fetch(`http://localhost:3001/users`, {
-      method:"POST", 
-      headers: {
+  handleSubmit = (evt) => {
+    evt.preventDefault()
+      const {username, email, password, password_confirmation} = this.state;
+    fetch(`http://localhost:3001/users`,  {
+      method: "POST",
+      headers:  {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
+      mode:'no-cors',
       body: JSON.stringify({
         username,
         email,
         password
       })
+
     })
-    .then(resp => resp.json())
+    .then(resp  => resp.json())
     .then(data => {
       localStorage.setItem("token", data.jwt)
-      console.log(data);
       this.props.handleLogin(data.user)
     })
+    .catch(err => console.log(err))
+
   }
 
   redirect = () => {
