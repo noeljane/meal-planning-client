@@ -22,20 +22,14 @@ class Signup extends Component {
 
   handleSubmit = (evt) => {
     evt.preventDefault()
-      const {username, email, password, password_confirmation} = this.state;
-    fetch(`http://localhost:3001/users`,  {
+      const {username, email, password} = this.state;
+    fetch(`http://localhost:3001/users?username=${username}&email=${email}&password=${password}`,  {
       method: "POST",
       headers:  {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
       mode:'no-cors',
-      body: JSON.stringify({
-        username,
-        email,
-        password
-      })
-
     })
     .then(resp  => resp.json())
     .then(data => {
