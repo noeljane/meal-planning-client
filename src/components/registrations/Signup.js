@@ -29,7 +29,6 @@ class Signup extends Component {
         "Content-Type": "application/json",
         "Accept": "application/json"
       },
-      mode:'no-cors',
     })
     .then(resp  => resp.json())
     .then(data => {
