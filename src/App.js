@@ -18,7 +18,8 @@ class App extends Component {
 
   componentDidMount() {
     const token = localStorage.getItem("token")
-    if(token) {
+    console.log(`the token is:  ${token}`)
+    if(token !== undefined) {
       fetch(`http://localhost:3001/auto_login`, {
         headers: {
           Authorization: `Bearer ${token}`

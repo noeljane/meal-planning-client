@@ -1,5 +1,4 @@
 import React, { Component } from 'react';
-import axios from 'axios';
 import {Link} from 'react-router-dom';
 
 class Login extends Component {
@@ -29,8 +28,7 @@ class Login extends Component {
       headers: {
         "Content-Type" : "application/json",
         "Accept": "application/json"
-      }, 
-      mode:'no-cors',
+      },
       body: JSON.stringify({
         username,
         email,
@@ -39,7 +37,7 @@ class Login extends Component {
     })
     .then(resp => resp.json())
     .then(data => {
-      localStorage.setItem("token", data.jwt)
+      localStorage.setItem("token", data.token)
       this.props.handleLogin(data.user)
     })
     .catch(error => {
