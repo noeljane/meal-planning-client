@@ -14,10 +14,6 @@ class MealsNew extends Component {
     }
   }
 
-  componentDidMount() {
-
-  }
-  
   handleChange = (event) => {
     const { name, value} = event.target;
     this.setState({
