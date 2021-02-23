@@ -6,6 +6,8 @@ import Signup from './components/registrations/Signup';
 import LogOut from './components/registrations/Logout'
 import MealsIndex from './components/meals/MealsIndex';
 import MealsNew from './components/meals/MealsNew';
+import 'antd/dist/antd.css';
+import './index.css';
 
 class App extends Component {
   constructor(props) {

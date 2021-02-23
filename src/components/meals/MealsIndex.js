@@ -3,12 +3,8 @@ import { Link } from 'react-router-dom';
 import {  Calendar, Badge } from 'antd';
 
 class MealsIndex extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      meals: []
-    }
-    
+  state =  {
+    meals: []
   }
 
   // Getting that data, yo!
@@ -35,23 +31,23 @@ class MealsIndex extends Component {
   getListData(value) {
     // From the value put in, return a list where date includes that "day" value
     let listData = [];
-    if (this.state.meals.length > 0) {
-      listData = this.state.meals.filter(m => new Date(m.date).getDate() === value)
+    if (this.state.meals.length > 0 && value) {
+      listData = this.state.meals.filter(m => new Date(m.date).getDate() === value.date())
     }
     return listData;
   }
-  
 
   // Make that data pretty
   dateCellRender(value) {
-    const listData = this.state.meals;
-    if (listData) {
+    const listData = this.getListData(value)
+    
+    if (listData.length > 0) {
       return (
         <ul className="events">
           {listData.map(item => {
             return (
               <li key={item.name}>
-                <Badge status="success"/>
+                <Badge status="success" text={item.name}/>
               </li>
             )           
           })}
@@ -60,7 +56,21 @@ class MealsIndex extends Component {
     }
   }
 
+  //TODO:Do dates need to be  in this??? 
+  getMonthData(value) {
+    if (value.month() === 8) {
+      return 1394;
+    }
+  }
+
   monthCellRender(value) {
+    const num = this.getMonthData(value);
+    return num ? (
+      <div className="notes-month">
+        {/* <section>{num}</section>
+        <span>Backlog number</span> */}
+      </div>
+    ) : null;
 
   }
   
@@ -69,14 +79,12 @@ class MealsIndex extends Component {
   render() {
     console.log("STATE:")
     console.log(this.state)
-    console.log("list data length")
-    console.log(this.getListData(15))
+
     return (
       <div>
         <h1>Meals!!</h1>
         <Link  to='/meals/new'>Create a Meal</Link>
-        {this.dateCellRender()}
-        <Calendar />
+        <Calendar dateCellRender={this.dateCellRender.bind(this)} monthCellRender={this.monthCellRender.bind(this)}/>
       </div>
       
     )
