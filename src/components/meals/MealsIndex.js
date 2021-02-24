@@ -46,9 +46,11 @@ class MealsIndex extends Component {
         <ul className="events">
           {listData.map(item => {
             return (
-              <li key={item.name}>
-                <Badge status="success" text={item.name}/>
-              </li>
+              <Link>
+                <li key={item.name}>
+                  <Badge status="success" text={item.name}/>
+                </li>
+              </Link>
             )           
           })}
         </ul>
@@ -79,7 +81,6 @@ class MealsIndex extends Component {
   render() {
     console.log("STATE:")
     console.log(this.state)
-
     return (
       <div>
         <h1>Meals!!</h1>
