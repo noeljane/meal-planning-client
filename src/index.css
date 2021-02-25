@@ -32,3 +32,8 @@ code {
 .notes-month section {
   font-size: 28px;
 }
+
+/* Meal Card  */
+.meal {
+  padding: 100px;
+}
