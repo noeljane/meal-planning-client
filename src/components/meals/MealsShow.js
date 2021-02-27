@@ -27,23 +27,47 @@ class MealsShow extends Component {
     })
   }
 
+  //TODO: Add default props for Meal.  
+  //Filter out  the  meal  id  number  etc. 
+  displayMealProperties() {
+    console.log("displaying  meal")
+    const { meal } = this.state;
+    if (Object.keys(meal).length > 0) {
+      console.log(Object.keys(meal))
+      Object.keys(meal).map((p)  =>  {
+        console.log(meal[p])
+        return (
+          <p>{meal[p]}</p>
+        )
+      })
+    
+    }
+    
+  }
+
   render () {
     console.log(this.props);
+    const { meal } = this.state;
     return (
       <div className="meal">
         <Card
           hoverable
           style={{ width: 240 }}
           cover={<img alt="example" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1296&q=60" />}
+          title={meal.name}
         >
-          <Meta title={this.state.meal.name} description={this.state.meal.description
-          }
-           />
+          
+          {Object.keys(meal).map((p)  =>  {
+            return (
+            <p>{meal[p]}</p>
+            )
+          })}
+          
         </Card>
       </div>
         
         // <h1>{this.state.meal.name}</h1>
-      
+        
     )
   }
 }

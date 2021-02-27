@@ -37,7 +37,7 @@ class MealsIndex extends Component {
     return listData;
   }
 
-  // Make that data pretty
+  //Ant Design method for displaying data
   dateCellRender(value) {
     const listData = this.getListData(value)
     
