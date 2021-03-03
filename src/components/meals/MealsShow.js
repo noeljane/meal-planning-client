@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router-dom';
-import { Card } from 'antd';
+import { Card,Button } from 'antd';
 
 const { Meta } = Card;
 
@@ -29,20 +29,16 @@ class MealsShow extends Component {
 
   //TODO: Add default props for Meal.  
   //Filter out  the  meal  id  number  etc. 
-  displayMealProperties() {
-    console.log("displaying  meal")
+  displayMealProperties =  () => {
     const { meal } = this.state;
     if (Object.keys(meal).length > 0) {
-      console.log(Object.keys(meal))
-      Object.keys(meal).map((p)  =>  {
-        console.log(meal[p])
+      return  Object.keys(meal).map((p)  =>  {
         return (
           <p>{meal[p]}</p>
         )
       })
     
-    }
-    
+    } 
   }
 
   render () {
@@ -56,14 +52,12 @@ class MealsShow extends Component {
           cover={<img alt="example" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1296&q=60" />}
           title={meal.name}
         >
-          
-          {Object.keys(meal).map((p)  =>  {
-            return (
-            <p>{meal[p]}</p>
-            )
-          })}
+        {this.displayMealProperties()}
           
         </Card>
+        <Button>Edit</Button>
+        <Button>Delete</Button>
+        
       </div>
         
         // <h1>{this.state.meal.name}</h1>
