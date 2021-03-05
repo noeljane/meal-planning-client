@@ -69,8 +69,6 @@ class MealsIndex extends Component {
     const num = this.getMonthData(value);
     return num ? (
       <div className="notes-month">
-        {/* <section>{num}</section>
-        <span>Backlog number</span> */}
       </div>
     ) : null;
 

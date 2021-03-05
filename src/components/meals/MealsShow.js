@@ -32,10 +32,23 @@ class MealsShow extends Component {
   displayMealProperties =  () => {
     const { meal } = this.state;
     if (Object.keys(meal).length > 0) {
-      return  Object.keys(meal).map((p)  =>  {
-        return (
-          <p>{meal[p]}</p>
-        )
+      //Filter Object
+      let keys = Object.keys(meal).filter(e => {
+         if (e !== "id" && e  !== "created_at" &&  e!== "updated_at" && e!==  "user_id") {
+           return true
+         }
+         
+      })
+      return  keys.map((p,i) =>  {
+        console.log(p)
+        if  ( p !== "created_at") {
+          return (
+            <p key={i}>{meal[p]}</p>
+          )
+        }
+
+
+        
       })
     
     } 
