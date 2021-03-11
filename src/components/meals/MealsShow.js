@@ -58,8 +58,6 @@ class MealsShow extends Component {
   }
 
   deleteMeal () {
-    console.log("deleting the  meal, fool")
-    console.log(this.props)
     const { mealId } = this.props;
     const token = localStorage.getItem('token')
     if (mealId) {
@@ -72,13 +70,13 @@ class MealsShow extends Component {
       })
       .then(resp => resp.json())
       .then(data =>  {
-        console.log("Boom bananas!")
         console.log(data)
       })
       .catch(error =>  
         console.log('api  errors: ', error))
     }
-    console.log("Complete!")
+
+    //TODO: Make  this  more react-y
     window.location  = "http://localhost:3000/meals/"    
   }
 
