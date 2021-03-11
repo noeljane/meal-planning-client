@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Redirect, Link } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Card,Button } from 'antd';
 
 const { Meta } = Card;
@@ -33,7 +33,7 @@ class MealsShow extends Component {
 
   //TODO: Add default props for Meal.  
   //Filter out  the  meal  id  number  etc. 
-  displayMealProperties =  () => {
+  displayMealProperties = () => {
     const { meal } = this.state;
     if  (Object.keys(meal).length === 0){
       return (
@@ -78,8 +78,8 @@ class MealsShow extends Component {
       .catch(error =>  
         console.log('api  errors: ', error))
     }
-    //TODO ADD redirect after meal is deleted
-    
+    console.log("Complete!")
+    window.location  = "http://localhost:3000/meals/"    
   }
 
   render () {
@@ -99,10 +99,7 @@ class MealsShow extends Component {
         <Button>Edit</Button>
         <Button onClick={this.deleteMeal.bind(this)}>Delete</Button>
         
-      </div>
-        
-        // <h1>{this.state.meal.name}</h1>
-        
+      </div>  
     )
   }
 }
