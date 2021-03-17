@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import { Link } from 'react-router-dom';
 import { Card,Button } from 'antd';
 
 const { Meta } = Card;
 
 class MealsShow extends Component {
   state  =  {
-    meal: {}
+    meal: {},
+    edit: false
   }
 
   componentDidMount () {
@@ -57,6 +57,13 @@ class MealsShow extends Component {
     }
   }
 
+  editMeal () {
+    console.log("edit time")
+    this.setState({
+      edit:true
+    })
+  }
+
   deleteMeal () {
     const { mealId } = this.props;
     const token = localStorage.getItem('token')
@@ -83,6 +90,7 @@ class MealsShow extends Component {
   render () {
     console.log(this.props);
     const { meal } = this.state;
+    console.log(this.state.edit)
     return (
       <div className="meal">
         <Card
@@ -94,7 +102,7 @@ class MealsShow extends Component {
         {this.displayMealProperties()}
           
         </Card>
-        <Button>Edit</Button>
+        <Button onClick={this.editMeal.bind(this)}>Edit</Button>
         <Button onClick={this.deleteMeal.bind(this)}>Delete</Button>
         
       </div>  

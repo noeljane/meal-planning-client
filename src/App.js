@@ -6,7 +6,7 @@ import Signup from './components/registrations/Signup';
 import LogOut from './components/registrations/Logout'
 import MealsIndex from './components/meals/MealsIndex';
 import MealsNew from './components/meals/MealsNew';
-import MealsShow from './components/meals/MealsShow.js';
+import MealsShow from './components/meals/MealsShow';
 import 'antd/dist/antd.css';
 import './index.css';
 
