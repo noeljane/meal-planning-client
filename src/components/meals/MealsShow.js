@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Card,Button } from 'antd';
+import { Form,Input,Card,Button } from 'antd';
 
 const { Meta } = Card;
 
@@ -34,11 +34,14 @@ class MealsShow extends Component {
   //TODO: Add default props for Meal.  
   //Filter out  the  meal  id  number  etc. 
   displayMealProperties = () => {
-    const { meal } = this.state;
+    const { meal,  edit } = this.state;
     if  (Object.keys(meal).length === 0){
       return (
         <h1>This meal has an error or cannot  be found</h1>
       )
+    }
+    if (edit ===  true) {
+      return this.displayEditForm()
     }
     if (Object.keys(meal).length > 0) {
       //Filter Object
@@ -62,6 +65,12 @@ class MealsShow extends Component {
     this.setState({
       edit:true
     })
+  }
+
+  displayEditForm() {
+    return (
+      <Form/>
+    )
   }
 
   deleteMeal () {
@@ -99,6 +108,7 @@ class MealsShow extends Component {
           cover={<img alt="example" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1296&q=60" />}
           title={meal.name}
         >
+
         {this.displayMealProperties()}
           
         </Card>
