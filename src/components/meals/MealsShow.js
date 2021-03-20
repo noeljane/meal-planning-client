@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form,Input,Card,Button } from 'antd';
+import { Form,Input,Card,Button,Checkbox } from 'antd';
 
 const { Meta } = Card;
 
@@ -40,7 +40,7 @@ class MealsShow extends Component {
         <h1>This meal has an error or cannot  be found</h1>
       )
     }
-    if (edit ===  true) {
+    if (edit === true) {
       return this.displayEditForm()
     }
     if (Object.keys(meal).length > 0) {
@@ -51,11 +51,9 @@ class MealsShow extends Component {
          }
       })
       return  keys.map((p,i) =>  {
-        if  ( p !== "created_at") {
-          return (
-            <p key={i}>{meal[p]}</p>
-          )
-        }  
+        return (
+          <p key={i}>{meal[p]}</p>
+        )
       }) 
     }
   }
@@ -63,13 +61,42 @@ class MealsShow extends Component {
   editMeal () {
     console.log("edit time")
     this.setState({
-      edit:true
+      edit:!this.state.edit
     })
   }
 
   displayEditForm() {
     return (
-      <Form/>
+      <Form
+      name="basic"
+      initialValues={{ remember: true }}
+    >
+      <Form.Item
+        label="Username"
+        name="username"
+        rules={[{ required: true, message: 'Please input your username!' }]}
+      >
+        <Input />
+      </Form.Item>
+
+      <Form.Item
+        label="Password"
+        name="password"
+        rules={[{ required: true, message: 'Please input your password!' }]}
+      >
+        <Input.Password />
+      </Form.Item>
+
+      <Form.Item  name="remember" valuePropName="checked">
+        <Checkbox>Remember me</Checkbox>
+      </Form.Item>
+
+      <Form.Item>
+        <Button type="primary" htmlType="submit">
+          Submit
+        </Button>
+      </Form.Item>
+    </Form>
     )
   }
 
