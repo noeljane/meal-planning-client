@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import { Form,Input,Card,Button,Checkbox } from 'antd';
+import { Form,Input,Card,Button,DatePicker } from 'antd';
 
 const { Meta } = Card;
 
@@ -34,7 +34,7 @@ class MealsShow extends Component {
   //TODO: Add default props for Meal.  
   //Filter out  the  meal  id  number  etc. 
   displayMealProperties = () => {
-    const { meal,  edit } = this.state;
+    const { meal, edit } = this.state;
     if  (Object.keys(meal).length === 0){
       return (
         <h1>This meal has an error or cannot  be found</h1>
@@ -66,29 +66,39 @@ class MealsShow extends Component {
   }
 
   displayEditForm() {
+    const  { meal } = this.state;
     return (
       <Form
       name="basic"
       initialValues={{ remember: true }}
     >
       <Form.Item
-        label="Username"
-        name="username"
-        rules={[{ required: true, message: 'Please input your username!' }]}
+        label="name"
+        name="name"
+        rules={[{ required: true, message: 'Please input a name!' }]}
       >
         <Input />
       </Form.Item>
 
       <Form.Item
-        label="Password"
-        name="password"
-        rules={[{ required: true, message: 'Please input your password!' }]}
+        label="description"
+        name="description"
       >
-        <Input.Password />
+        <Input/>
       </Form.Item>
 
-      <Form.Item  name="remember" valuePropName="checked">
-        <Checkbox>Remember me</Checkbox>
+      <Form.Item
+        label="link"
+        name="link"
+      >
+        <Input/>
+      </Form.Item>
+
+      <Form.Item
+        label="date"
+        name="date"
+      >
+        <DatePicker/>
       </Form.Item>
 
       <Form.Item>
