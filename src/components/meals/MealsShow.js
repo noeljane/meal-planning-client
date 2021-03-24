@@ -65,6 +65,13 @@ class MealsShow extends Component {
     })
   }
 
+  submitEditMeal (event) {
+    event.preventDefault()
+    console.log(event)
+    console.log("Form submitted!")
+
+  }
+
   displayEditForm() {
     const  { meal } = this.state;
     return (
@@ -102,7 +109,7 @@ class MealsShow extends Component {
       </Form.Item>
 
       <Form.Item>
-        <Button type="primary" htmlType="submit">
+        <Button type="primary" htmlType="submit"  onClick={this.submitEditMeal.bind(this)}>
           Submit
         </Button>
       </Form.Item>
