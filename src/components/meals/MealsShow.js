@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Form,Input,Card,Button,DatePicker } from 'antd';
+import moment from 'moment';
 
 const { Meta } = Card;
 
@@ -74,17 +75,25 @@ class MealsShow extends Component {
 
   displayEditForm() {
     const  { meal } = this.state;
+
     return (
       <Form
       name="basic"
-      initialValues={{ remember: true }}
+      initialValues={{ 
+        name: meal.name, 
+        description: meal.description,
+        link: meal.link,
+        date: moment(meal.date)
+      }}
+      
     >
       <Form.Item
         label="name"
         name="name"
         rules={[{ required: true, message: 'Please input a name!' }]}
+        
       >
-        <Input />
+        <Input/>
       </Form.Item>
 
       <Form.Item
@@ -105,7 +114,7 @@ class MealsShow extends Component {
         label="date"
         name="date"
       >
-        <DatePicker/>
+        <DatePicker />
       </Form.Item>
 
       <Form.Item>
