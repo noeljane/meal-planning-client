@@ -6,7 +6,6 @@ const { Meta } = Card;
 
 class MealsShow extends Component {
   state  =  {
-    meal: {},
     name:  '',
     description: '',
     date: 0,
@@ -29,7 +28,6 @@ class MealsShow extends Component {
         return
       }
       this.setState({
-        meal: data,
         name: data.name,
         description:  data.description,
         date: data.date,
@@ -43,25 +41,27 @@ class MealsShow extends Component {
   //TODO: Add default props for Meal.  
   //Filter out  the  meal  id  number  etc. 
   displayMealProperties = () => {
-    const { meal, edit } = this.state;
-    if  (Object.keys(meal).length === 0){
-      return (
-        <h1>This meal has an error or cannot  be found</h1>
+    const { name, description,date,link, edit } = this.state;
+
+    if (!name) {
+      return(
+        <h1>No meal,  fool!</h1>
       )
+      
     }
     if (edit === true) {
       return this.displayEditForm()
     }
-    if (Object.keys(meal).length > 0) {
+    if (Object.keys(this.state).length > 0) {
       //Filter Object
-      let keys = Object.keys(meal).filter((e) => {
-         if (e !== "id" && e  !== "created_at" &&  e!== "updated_at" && e!==  "user_id") {
+      let keys = Object.keys(this.state).filter((e) => {
+         if (e !== "edit") {
            return true
          }
       })
       return  keys.map((p,i) =>  {
         return (
-          <p key={i}>{meal[p]}</p>
+          <p key={i}>{this.state[p]}</p>
         )
       }) 
     }
@@ -88,16 +88,16 @@ class MealsShow extends Component {
   }
 
   displayEditForm() {
-    const  { meal } = this.state;
+    const  { name,description,link,date } = this.state;
 
     return (
       <Form
       name="basic"
       initialValues={{ 
-        name: meal.name, 
-        description: meal.description,
-        link: meal.link,
-        date: moment(meal.date)
+        name: name, 
+        description: description,
+        link: link,
+        date: moment(date)
       }}
       
     >
@@ -164,7 +164,6 @@ class MealsShow extends Component {
 
   render () {
     console.log(this.props);
-    const { meal } = this.state;
     console.log("this is  state:")
     console.log(this.state)
     return (
@@ -173,7 +172,7 @@ class MealsShow extends Component {
           hoverable
           style={{ width: 240 }}
           cover={<img alt="example" src="https://images.unsplash.com/photo-1512621776951-a57141f2eefd?ixlib=rb-1.2.1&ixid=MXwxMjA3fDB8MHxleHBsb3JlLWZlZWR8NXx8fGVufDB8fHw%3D&auto=format&fit=crop&w=1296&q=60" />}
-          title={meal.name}
+          title={this.state.name}
         >
 
         {this.displayMealProperties()}
