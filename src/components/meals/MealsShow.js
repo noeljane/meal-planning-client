@@ -7,6 +7,10 @@ const { Meta } = Card;
 class MealsShow extends Component {
   state  =  {
     meal: {},
+    name:  '',
+    description: '',
+    date: 0,
+    link: '',
     edit: false
   }
 
@@ -25,7 +29,11 @@ class MealsShow extends Component {
         return
       }
       this.setState({
-        meal: data
+        meal: data,
+        name: data.name,
+        description:  data.description,
+        date: data.date,
+        link: data.link
       })
     })
     .catch(errors => 
@@ -66,6 +74,12 @@ class MealsShow extends Component {
     })
   }
 
+  handleEditChange  = (event) =>  {
+    const { name, value} =  event.target;
+    
+
+  }
+
   submitEditMeal (event) {
     event.preventDefault()
     console.log(event)
@@ -91,7 +105,6 @@ class MealsShow extends Component {
         label="name"
         name="name"
         rules={[{ required: true, message: 'Please input a name!' }]}
-        
       >
         <Input/>
       </Form.Item>
@@ -152,7 +165,8 @@ class MealsShow extends Component {
   render () {
     console.log(this.props);
     const { meal } = this.state;
-    console.log(this.state.edit)
+    console.log("this is  state:")
+    console.log(this.state)
     return (
       <div className="meal">
         <Card

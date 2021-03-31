@@ -32,11 +32,8 @@ class MealsNew extends Component {
       description: description,
       date: date,
       link: link,
-
       userId: userId
     }
-    console.log("Here's the meal")
-    console.log(meal);
 
     fetch(`http://localhost:3001/meals`, {
         method: 'POST',
