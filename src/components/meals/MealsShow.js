@@ -74,17 +74,22 @@ class MealsShow extends Component {
     })
   }
 
-  handleEditChange  = (event) =>  {
+  //TODO:fix bug for when name is empty
+  handleTextEditChange = (event) =>  {
     const { name, value} =  event.target;
-    
-
+    this.setState({
+      name: value
+    })
   }
+
+  //TODO handle  edit  change  for  dates
 
   submitEditMeal (event) {
     event.preventDefault()
+    console.log("here's  the event of the form")
     console.log(event)
+    console.log(event.value)
     console.log("Form submitted!")
-
   }
 
   displayEditForm() {
@@ -102,32 +107,39 @@ class MealsShow extends Component {
       
     >
       <Form.Item
+        placeholder="name"
         label="name"
         name="name"
         rules={[{ required: true, message: 'Please input a name!' }]}
+        onChange={this.handleTextEditChange}
+        
       >
-        <Input/>
+        <Input name="name"/>
       </Form.Item>
 
       <Form.Item
         label="description"
         name="description"
+        onChange={this.handleTextEditChange}
       >
-        <Input/>
+        <Input name="description"/>
       </Form.Item>
 
       <Form.Item
         label="link"
         name="link"
+        onChange={this.handleTextEditChange}
       >
-        <Input/>
+        <Input name="link"/>
       </Form.Item>
 
       <Form.Item
         label="date"
-        name="date"
+        name="date"    
       >
-        <DatePicker />
+        <DatePicker 
+        name="date"/>
+
       </Form.Item>
 
       <Form.Item>
@@ -163,7 +175,7 @@ class MealsShow extends Component {
   }
 
   render () {
-    console.log(this.props);
+    // console.log(this.props);
     console.log("this is  state:")
     console.log(this.state)
     return (
