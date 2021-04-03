@@ -6,7 +6,7 @@ const { Meta } = Card;
 
 class MealsShow extends Component {
   state  =  {
-    name:  '',
+    name:  null,
     description: '',
     date: 0,
     link: '',
@@ -43,7 +43,7 @@ class MealsShow extends Component {
   displayMealProperties = () => {
     const { name, description,date,link, edit } = this.state;
 
-    if (!name) {
+    if (name  === null) {
       return(
         <h1>No meal,  fool!</h1>
       )
@@ -74,7 +74,6 @@ class MealsShow extends Component {
     })
   }
 
-  //TODO:fix bug for when name is empty
   handleTextEditChange = (event) =>  {
     const { name, value} =  event.target;
     this.setState({
@@ -82,11 +81,15 @@ class MealsShow extends Component {
     })
   }
 
-  //TODO handle  edit  change  for  dates
+  handleDateEditChange = (date, dateString) => {
+    this.setState({
+      date: new Date(dateString)
+    })
+  }
 
   submitEditMeal (event) {
     event.preventDefault()
-    console.log("here's  the event of the form")
+    console.log("here's the event of the form")
     console.log(event)
     console.log(event.value)
     console.log("Form submitted!")
@@ -135,10 +138,13 @@ class MealsShow extends Component {
 
       <Form.Item
         label="date"
-        name="date"    
+        name="date" 
+        
       >
         <DatePicker 
-        name="date"/>
+        name="date"
+        onChange={this.handleDateEditChange}
+        />
 
       </Form.Item>
 
