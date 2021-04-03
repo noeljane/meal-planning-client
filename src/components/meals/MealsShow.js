@@ -59,7 +59,7 @@ class MealsShow extends Component {
            return true
          }
       })
-      return  keys.map((p,i) =>  {
+      return  keys.map((p,i) =>  { 
         return (
           <p key={i}>{this.state[p]}</p>
         )
@@ -77,22 +77,49 @@ class MealsShow extends Component {
   handleTextEditChange = (event) =>  {
     const { name, value} =  event.target;
     this.setState({
-      name: value
+      [name]: value
     })
   }
 
   handleDateEditChange = (date, dateString) => {
+    console.log(dateString)
     this.setState({
-      date: new Date(dateString)
+      date: dateString
     })
   }
 
   submitEditMeal (event) {
     event.preventDefault()
-    console.log("here's the event of the form")
-    console.log(event)
-    console.log(event.value)
-    console.log("Form submitted!")
+    const { name,description,date, link,edit  } = this.state;
+    console.log()
+    const token = localStorage.getItem('token')
+    const mealId = this.props.mealId;
+    
+    let  meal =  {
+      name: name,
+      description: description,
+      date: date,
+      link: link
+    }
+
+    fetch(`http://localhost:3001/meals/${mealId}`, {
+      method: 'PUT',
+      headers: {
+        Authorization: `Bearer ${token}`
+      },
+      body: JSON.stringify(meal)
+    })
+    .then(resp => resp.json())
+    .then(data => {
+      console.log("success! meal updated")
+    })
+    .catch(error =>  {
+      console.log('api errors: ', error)
+    })
+
+    this.setState({
+      edit: !edit
+    })
   }
 
   displayEditForm() {
