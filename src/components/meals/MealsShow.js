@@ -2,8 +2,6 @@ import React, { Component } from 'react';
 import { Form,Input,Card,Button,DatePicker } from 'antd';
 import moment from 'moment';
 
-const { Meta } = Card;
-
 class MealsShow extends Component {
   state  =  {
     name:  null,
@@ -41,8 +39,7 @@ class MealsShow extends Component {
   //TODO: Add default props for Meal.  
   //Filter out  the  meal  id  number  etc. 
   displayMealProperties = () => {
-    const { name, description,date,link, edit } = this.state;
-
+    const { name, edit } = this.state;
     if (name  === null) {
       return(
         <h1>No meal,  fool!</h1>
@@ -65,6 +62,7 @@ class MealsShow extends Component {
         )
       }) 
     }
+    return;
   }
 
   editMeal () {
