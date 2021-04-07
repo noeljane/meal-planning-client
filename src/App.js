@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { BrowserRouter, Switch, Route } from 'react-router-dom';
 import Home from './components/Home';
+import Nav from  './components/Nav';
 import Login from './components/registrations/Login';
 import Signup from './components/registrations/Signup';
 import LogOut from './components/registrations/Logout'
@@ -58,6 +59,7 @@ class App extends Component {
   render () {
     return (
       <div>
+        <Nav/>
         <BrowserRouter>
           <Switch>
             <Route 
