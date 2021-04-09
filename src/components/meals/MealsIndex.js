@@ -45,12 +45,13 @@ class MealsIndex extends Component {
       return (
         <ul className="events">
           {listData.map(item => {
+            let mealIdString =  `/meals/${item.id}`
             return (
-              <Link>
-                <li key={item.name}>
+              <a href={mealIdString}  key={item.id}>
+                <li >
                   <Badge status="success" text={item.name}/>
                 </li>
-              </Link>
+              </a>
             )           
           })}
         </ul>
