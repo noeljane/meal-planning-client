@@ -59,7 +59,7 @@ class App extends Component {
   render () {
     return (
       <div>
-        <Nav/>
+        <Nav user={this.state.user}/>
         <BrowserRouter>
           <Switch>
             <Route 
