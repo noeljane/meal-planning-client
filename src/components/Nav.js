@@ -12,7 +12,7 @@ class Nav extends Component {
     if (localStorage.getItem('token')) {
       return (
         <Menu  mode="horizontal">
-          <Menu.Item><a href="/login">Login</a></Menu.Item>
+          <Menu.Item><a href="/logout">Logout</a></Menu.Item>
           <Menu.Item><a href="/meals/new">Add Meals</a></Menu.Item>
           <Menu.Item><a href="/meals/">Meal Calendar</a></Menu.Item>
         </Menu>
@@ -40,7 +40,7 @@ class Nav extends Component {
     }
   }
 render ()  {
-  console.log("Props for nav  bar")
+  console.log("Props for nav bar")
   console.log(this.props)
   return (
     <div>
